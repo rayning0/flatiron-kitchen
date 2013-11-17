@@ -4,7 +4,14 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+group :test, :development do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -32,9 +39,19 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :test do
-  gem 'rspec-rails'
-  gem 'capybara'
+group :test, :development do
+  gem 'pry'
+  gem "rspec-rails"
+  gem "capybara"
+  gem "selenium-webdriver"
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem "terminal-notifier-guard"
+  gem "factory_girl_rails"
+  gem "simplecov"
+  gem "database_cleaner"
+  gem "guard", ">=2.1.0"
+  gem "guard-rspec"
 end
 
 # Use ActiveModel has_secure_password
